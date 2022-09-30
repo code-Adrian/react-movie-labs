@@ -45,6 +45,8 @@ const MovieDetails = ( props) => {
           </li>
         ))}
       </Paper>
+
+
       <Paper component="ul" sx={{...root}}>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
@@ -57,6 +59,25 @@ const MovieDetails = ( props) => {
         />
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
+
+
+      <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="Production Companies" sx={{...chip}} color="primary" />
+        </li>
+        {movie.production_companies.map((g) => (
+          <li key={g.name}>
+            <Chip label={g.name} sx={{...chip}} />
+          </li>
+        ))}
+      </Paper>
+
+
+
+
       <Fab
         color="secondary"
         variant="extended"

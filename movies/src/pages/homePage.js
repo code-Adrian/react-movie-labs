@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";  
 import Header from "../components/headerMovieList";
 import FilterCard from "../components/filterMoviesCard";
 import MovieList from "../components/movieList";
 import Grid from "@mui/material/Grid";
 
+
+
+
 const MovieListPage = (props) => {
-  const movies = props.movies;
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    
+    const {REACT_APP_TMDB_KEY} = process.env;
+    fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&page=1`
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        // console.log(json);
+        return json.results;
+      })
+      .then((movies) => {
+        setMovies(movies);
+      });
+  }, []);
 
   return (
     <Grid container sx={{ padding: "20px" }}>

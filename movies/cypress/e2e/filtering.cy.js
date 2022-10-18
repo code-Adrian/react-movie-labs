@@ -40,8 +40,23 @@ describe("Filtering", () => {
   });
 
   describe("By movie genre", () => {
-    // TODO
+    it("show movies with the selected genre", () => {
+      const selectedGenreId = 35;
+      const selectedGenreText = "Comedy";
+      const matchingMovies = filterByGenre(movies, selectedGenreId);
+      cy.get("#genre-select").click();
+      cy.get("li").contains(selectedGenreText).click();
+      cy.get(".MuiCardHeader-content").should(
+        "have.length",
+        matchingMovies.length
+      );
+      cy.get(".MuiCardHeader-content").each(($card, index) => {
+        cy.wrap($card).find("p").contains(matchingMovies[index].title);
+      });
+    });
   });
+
+
   describe("Combined genre and title", () => {
     // TODO
   });

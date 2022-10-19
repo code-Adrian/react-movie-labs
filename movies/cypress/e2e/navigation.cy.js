@@ -13,6 +13,7 @@ describe("Navigation", () => {
         movies = response.results;
       });
   });
+
   beforeEach(() => {
     cy.visit("/");
   });
@@ -22,6 +23,9 @@ describe("Navigation", () => {
       cy.url().should("include", `/movies/${movies[0].id}`);
     });
   });
+  
+
+
   describe("The site header", () => {
     describe("when the viewport is desktop scale", () => {
       it("navigation via the links", () => {
@@ -48,9 +52,36 @@ describe("Navigation", () => {
       }
     );
   });
+
+
   describe("From the favourites page to a movie's details", () => {
-    // TODO
-  });
+    it("selected movie card shows the red heart", () => {
+      cy.get(".MuiCardHeader-root").eq(1).find("svg").should("not.exist");
+      cy.get("button[aria-label='add to favorites']").eq(1).click();
+      cy.get(".MuiCardHeader-root").eq(1).find("svg");
+    });
+
+    it("only the tagged movies are listed", () => {
+      cy.get("button[aria-label='add to favorites']").eq(1).click();
+      cy.get("button[aria-label='add to favorites']").eq(3).click();
+      cy.get("button").contains("Favorites").click();
+      cy.get(".MuiCardHeader-content").should("have.length", 2);
+      cy.get(".MuiCardHeader-content")
+        .eq(0)
+        .find("p")
+        .contains(movies[1].title);
+      cy.get(".MuiCardHeader-content")
+        .eq(1)
+        .find("p")
+        .contains(movies[3].title);
+    });
+    it("navigates to the movie details page and changes the URL.",() => {
+      cy.get(".MuiCardActions-root").eq(1).contains("More Info").click();
+      cy.url().should("include", `/movies/${movies[1].id}`);
+    });
+});
+
+
   describe("The forward/backward links", () => {
     beforeEach(() => {
       cy.get(".MuiCardActions-root").eq(0).contains("More Info").click();
@@ -63,3 +94,4 @@ describe("Navigation", () => {
     });
   });
 });
+

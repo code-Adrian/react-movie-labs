@@ -43,7 +43,7 @@ export const getUpcomingMovies = () => {
   });
 };
   
-  export const getGenres = async () => {
+ export const getGenres = async () => {
     return fetch(
       "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
         process.env.REACT_APP_TMDB_KEY +
@@ -57,8 +57,8 @@ export const getUpcomingMovies = () => {
     .catch((error) => {
       throw error
    });
-  };
-  
+  }; 
+
   export const getMovieImages = ({ queryKey }) => {
     const [, idPart] = queryKey;
     const { id } = idPart;
@@ -87,4 +87,35 @@ export const getUpcomingMovies = () => {
         // console.log(json.results);
         return json.results;
       });
+  };
+
+//Pagination ---------------
+  export const getMoviesPage = (page) => {
+    console.log(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${page}`)
+    return fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${page}`
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+       throw error
+    });
+  };
+
+
+  export const getUpcomingMoviesPage = (page) => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&page=${page}`
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+       throw error
+    });
   };

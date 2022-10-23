@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
+import { Pagination } from "@mui/material";
+import Paginator from '../pagination'
+import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
+import { getMovies } from "../../api/tmdb-api";
+import { getPage } from "../../api/tmdb-api";
 
-function MovieListPageTemplate({ movies, title, action }) {
+function MovieListPageTemplate({ movies, title, action, pages,setPage }) {
+  //States
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
+
   const genreId = Number(genreFilter);
 
-  let displayedMovies = movies
-    .filter((m) => {
+  
+  let displayedMovies = movies.filter((m) => {
       return m.title.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
-    })
-    .filter((m) => {
+    }).filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
     });
 
@@ -21,6 +27,11 @@ function MovieListPageTemplate({ movies, title, action }) {
     if (type === "name") setNameFilter(value);
     else setGenreFilter(value);
   };
+
+
+  const handleOnChange = (page) =>{
+    setPage(page)
+  }
 
   return (
     <Grid container sx={{ padding: '20px' }}>
@@ -37,7 +48,11 @@ function MovieListPageTemplate({ movies, title, action }) {
         </Grid>
         <MovieList action={action} movies={displayedMovies}></MovieList>
       </Grid>
+      <Pagination count={pages} defaultPage={1} color="primary" variant="outlined" shape="rounded" onChange={(e) => handleOnChange(e.target.textContent)}/>
+      
+     
     </Grid>
+    
   );
 }
 export default MovieListPageTemplate;

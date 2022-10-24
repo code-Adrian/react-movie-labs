@@ -13,6 +13,8 @@ const Header = (props ) => {
     <Paper 
       component="div" 
       sx={{
+        borderRadius: "50px",
+        backgroundColor: 'rgba(255, 255, 0,0.7)',
         display: "flex",
         justifyContent: "space-around",
         flexWrap: "wrap",

@@ -4,12 +4,27 @@ import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
 import { Pagination } from "@mui/material";
-import Paginator from '../pagination'
 import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
-import { getMovies } from "../../api/tmdb-api";
-import { getPage } from "../../api/tmdb-api";
+import {makeStyles} from "@material-ui/core"
+import { withTheme } from "@emotion/react";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    position: "fixed",
+    overflow: "hidden",
+    bottom: 0,
+    zIndex: 200,
+    backgroundColor: "rgba(95,90,90,0.8)",
+    padding: "5px 0px",
+    color: "white",
+    width: "100vw",
+    marginLeft: "-2vw",
+    
+  }
+}));
 
 function MovieListPageTemplate({ movies, title, action, pages,setPage }) {
+
   //States
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
@@ -32,13 +47,14 @@ function MovieListPageTemplate({ movies, title, action, pages,setPage }) {
   const handleOnChange = (page) =>{
     setPage(page)
   }
-
+  const classes = useStyles();
   return (
-    <Grid container sx={{ padding: '20px' }}>
+   
+    <Grid container sx={{ padding: '20px', backgroundColor: "rgba(0,0,0,0.1)" } }>
       <Grid item xs={12}>
         <Header title={title} />
       </Grid>
-      <Grid item container spacing={5}>
+      <Grid item container spacing={5} >
         <Grid key="find" item xs={12} sm={6} md={4} lg={3} xl={2}>
           <FilterCard
             onUserInput={handleChange}
@@ -48,9 +64,12 @@ function MovieListPageTemplate({ movies, title, action, pages,setPage }) {
         </Grid>
         <MovieList action={action} movies={displayedMovies}></MovieList>
       </Grid>
-      <Pagination count={pages} defaultPage={1} color="primary" variant="outlined" shape="rounded" onChange={(e) => handleOnChange(e.target.textContent)}/>
-      
-     
+      <div className={classes.root}>
+        <Pagination count={pages} defaultPage={1} color="primary" size="large" variant="outlined" shape="rounded" onChange={(e) => handleOnChange(e.target.textContent)} style={{
+          display: "flex",
+          justifyContent: "center",
+        }} />
+        </div>
     </Grid>
     
   );

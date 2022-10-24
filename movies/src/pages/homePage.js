@@ -7,7 +7,7 @@ import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 import { Pagination } from "@mui/material";
-import Paginator from '../components/pagination'
+
 
 const HomePage = (props) => {
   const [page,setPage] = useState(1)

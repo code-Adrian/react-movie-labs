@@ -12,6 +12,8 @@ import { createRoot } from "react-dom/client";
 import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 
+
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -21,9 +23,10 @@ const queryClient = new QueryClient({
     },
   },
 });
-
 const App = () => {
+ 
   return (
+    
     <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <SiteHeader />
@@ -44,5 +47,5 @@ const App = () => {
   );
 };
 
-const rootElement = createRoot(  document.getElementById("root") )
+const rootElement = createRoot(  document.getElementById("root"),document.body.style.backgroundImage = "url('https://wallpaperboat.com/wp-content/uploads/2019/10/high-resolution-black-background-06.jpg')", document.body.style.backgroundRepeat = "repeat",document.body.style.backgroundSize = "repeat")
 rootElement.render(<App />);

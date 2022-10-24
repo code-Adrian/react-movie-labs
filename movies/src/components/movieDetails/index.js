@@ -16,8 +16,15 @@ const root = {
     flexWrap: "wrap",
     listStyle: "none",
     padding: 1.5,
-    margin: 0,
+    margin: '0.2em',
+    backgroundColor: "rgba(255,255,255,0.7)",
+    color: 'white',
+    borderRadius: '20px',
 };
+
+const detail = {
+color: 'rgba(255,255,255,0.6)'
+}
 const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => {  // Don't miss this!
@@ -26,11 +33,11 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
 
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography sx={{...detail}} variant="h5" component="h3">
         Overview
       </Typography>
 
-      <Typography variant="h6" component="p">
+      <Typography sx={{...detail}} variant="h6" component="p">
         {movie.overview}
       </Typography>
 

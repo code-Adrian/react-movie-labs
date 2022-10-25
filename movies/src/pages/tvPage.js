@@ -1,22 +1,21 @@
 import React, {useState,useEffect} from "react";
-import { getMoviesPage } from "../api/tmdb-api";
-import PageTemplate from '../components/templateMovieListPage';
+import { getTvPage } from "../api/tmdb-api";
+import PageTemplate from '../components/templateTvPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
 
-const HomePage = (props) => {
+const TvPage = (props) => {
   const [page,setPage] = useState(1)
 
-  const  {  data, error, isLoading, isError,refetch }  = useQuery("discover", () => getMoviesPage(page),{enabled: true }) 
-
+  const  {  data, error, isLoading, isError,refetch }  = useQuery("tv", () => getTvPage(page),{enabled: true }) 
 
   useEffect(() => { 
     refetch();
    }, [page]);
 
- 
+
   if (isLoading) {
     return <Spinner />
   }
@@ -32,7 +31,7 @@ const HomePage = (props) => {
  //const total_pages = data.total_pages // -- For pagination
  //gets the current page
  const current_page = data.page
-console.log(movies)
+
    
   // Redundant, but necessary to avoid app crashing.
   const favorites = movies.filter(m => m.favorite)
@@ -42,12 +41,11 @@ console.log(movies)
 
   return (
     
-    <PageTemplate title="Discover Movies" movies={movies} current_page = {current_page} pages={500} setPage={setPage} action={(movie) => {
+    <PageTemplate title="Popular Tv Shows" movies={movies} current_page = {current_page} pages={500} setPage={setPage} action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />}}
-        
         />  
         
 );
 
 };
-export default HomePage;
+export default TvPage;

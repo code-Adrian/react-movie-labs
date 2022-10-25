@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
-import MovieList from "../movieList";
+import TvList from "../tvList";
 import Grid from "@mui/material/Grid";
 import { Pagination } from "@mui/material";
 import {makeStyles} from "@material-ui/core"
 
-
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {
     position: "fixed",
     overflow: "hidden",
@@ -22,7 +21,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function MovieListPageTemplate({ movies, title, action, pages,setPage }) {
+function TvPageTemplate({ movies, title, action, pages,setPage }) {
 
   //States
   const [nameFilter, setNameFilter] = useState("");
@@ -31,8 +30,9 @@ function MovieListPageTemplate({ movies, title, action, pages,setPage }) {
   const genreId = Number(genreFilter);
 
   
+
   let displayedMovies = movies.filter((m) => {
-      return m.title.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
+      return m.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
     }).filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
     });
@@ -62,7 +62,7 @@ function MovieListPageTemplate({ movies, title, action, pages,setPage }) {
             genreFilter={genreFilter}
           />
         </Grid>
-        <MovieList action={action} movies={displayedMovies}></MovieList>
+        <TvList action={action} movies={displayedMovies}></TvList>
       </Grid>
       <div className={classes.root}>
         <Pagination count={pages} defaultPage={1} color="primary" size="large" variant="outlined" shape="rounded" onChange={(e) => handleOnChange(e.target.textContent)} style={{
@@ -74,4 +74,4 @@ function MovieListPageTemplate({ movies, title, action, pages,setPage }) {
     
   );
 }
-export default MovieListPageTemplate;
+export default TvPageTemplate;

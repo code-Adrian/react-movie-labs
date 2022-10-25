@@ -12,7 +12,8 @@ const UpcomingMoviesPage = (props) => {
 
 
   useEffect(() => { 
-    refetch();
+     refetch();
+     
    }, [page]);
 
   if (isLoading) {
@@ -29,7 +30,7 @@ const UpcomingMoviesPage = (props) => {
   const total_pages = data.total_pages // -- For pagination
   const favorites = movies.filter(m => m.favorite)
   localStorage.setItem('favorites', JSON.stringify(favorites))
-  const addToFavorites = (movieId) => true 
+  //const addToFavorites = (movieId) => true 
 
   
   return (

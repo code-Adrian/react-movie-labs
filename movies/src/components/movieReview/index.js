@@ -3,8 +3,8 @@ import React from "react";
 const MovieReview =  ({ review }) => {
   return (
     <>
-      <p>Review By: {review.author} </p>
-      <p>{review.content} </p>
+      <p style={{color: 'rgba(255,255,255,0.7)'}}>Review By: {review.author} </p>
+      <p style={{color: 'rgba(255,255,255,0.7)',fontSize: '1.5em'}}>{review.content} </p>
     </>
   );
 };

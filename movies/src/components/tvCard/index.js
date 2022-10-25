@@ -14,12 +14,12 @@ import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
-import { MoviesContext } from "../../contexts/moviesContext";
+import { TvContext } from "../../contexts/tvContext";
 
 
 
-export default function MovieCard({movie, action}) {
-  const { favorites,playlists } = useContext(MoviesContext);
+export default function TvCard({movie, action}) {
+  const { favorites,playlists } = useContext(TvContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -70,7 +70,7 @@ export default function MovieCard({movie, action}) {
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {movie.release_date}
+              {movie.first_air_date}
             </Typography>
           </Grid>
           <Grid item xs={6}>
@@ -83,7 +83,7 @@ export default function MovieCard({movie, action}) {
       </CardContent>
       <CardActions disableSpacing>
         {action(movie)}
-        <Link to={`/movies/${movie.id}`}>
+        <Link to={`/tvShow/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>

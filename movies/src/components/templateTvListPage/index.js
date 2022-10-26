@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function TvPageTemplate({ movies, title, action, pages,setPage }) {
+function TvPageListTemplate({ tvShows, title, action, pages,setPage }) {
 
   //States
   const [nameFilter, setNameFilter] = useState("");
@@ -31,7 +31,7 @@ function TvPageTemplate({ movies, title, action, pages,setPage }) {
 
   
 
-  let displayedMovies = movies.filter((m) => {
+  let displayedtvShows = tvShows.filter((m) => {
       return m.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
     }).filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
@@ -62,7 +62,7 @@ function TvPageTemplate({ movies, title, action, pages,setPage }) {
             genreFilter={genreFilter}
           />
         </Grid>
-        <TvList action={action} movies={displayedMovies}></TvList>
+        <TvList action={action} tvShows={displayedtvShows}></TvList>
       </Grid>
       <div className={classes.root}>
         <Pagination count={pages} defaultPage={1} color="primary" size="large" variant="outlined" shape="rounded" onChange={(e) => handleOnChange(e.target.textContent)} style={{
@@ -74,4 +74,4 @@ function TvPageTemplate({ movies, title, action, pages,setPage }) {
     
   );
 }
-export default TvPageTemplate;
+export default TvPageListTemplate;

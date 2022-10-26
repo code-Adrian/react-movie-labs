@@ -37,7 +37,7 @@ export default function MovieCard({movie, action}) {
 
   return (
     
-    <Card sx={{ maxWidth: 345, backgroundColor: 'rgba(0,0,0,0.9)' }} >
+    <Card sx={{ maxWidth: 345, backgroundImage: "url('https://wallpaperboat.com/wp-content/uploads/2019/10/high-resolution-black-background-06.jpg')" }} >
             <CardHeader
         avatar={
           movie.favorite ? (
@@ -67,10 +67,10 @@ export default function MovieCard({movie, action}) {
       />
       <CardContent sx={{color: 'white'}}>
         <Grid container>
-          <Grid item xs={6}>
+          <Grid item xs={7}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {movie.release_date}
+              {" "}{movie.release_date}
             </Typography>
           </Grid>
           <Grid item xs={6}>

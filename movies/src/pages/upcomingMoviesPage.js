@@ -13,7 +13,7 @@ const UpcomingMoviesPage = (props) => {
 
   useEffect(() => { 
      refetch();
-     
+     // eslint-disable-next-line
    }, [page]);
 
   if (isLoading) {

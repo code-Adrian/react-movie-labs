@@ -14,6 +14,7 @@ const HomePage = (props) => {
 
   useEffect(() => { 
     refetch();
+    // eslint-disable-next-line
    }, [page]);
 
  

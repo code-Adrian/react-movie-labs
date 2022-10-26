@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
     overflow: "hidden",
     bottom: 0,
     zIndex: 200,
-    backgroundColor: "rgba(95,90,90,0.8)",
+    backgroundColor: "rgba(95,90,90,0.9)",
     padding: "5px 0px",
     color: "white",
     width: "100vw",

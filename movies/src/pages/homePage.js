@@ -33,7 +33,6 @@ const HomePage = (props) => {
  //const total_pages = data.total_pages // -- For pagination
  //gets the current page
  const current_page = data.page
-console.log(movies)
    
   // Redundant, but necessary to avoid app crashing.
   const favorites = movies.filter(m => m.favorite)

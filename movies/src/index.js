@@ -5,6 +5,7 @@ import MoviePage from "./pages/movieDetailsPage";
 import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
 import MovieReviewPage from "./pages/movieReviewPage";
+import MovieCreditsPage from "./pages/movieCreditsPage";
 import TvShowReviewPage from "./pages/tvShowReviewPage";
 import SiteHeader from './components/siteHeader'
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -37,14 +38,21 @@ const App = () => {
       <TvContextProvider>
       <MoviesContextProvider>
       <Routes>
+        
         <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
+
+        <Route path="/credits/:id" element={ <MovieCreditsPage /> } />
         <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
         <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
         <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
         <Route path="/movies/:id" element={<MoviePage />} />
+
+
         <Route path="/tvShow/:id" element={<TvDetailsPage />} />
         <Route path="/tvShowReviews/:id" element={ <TvShowReviewPage /> } />
         <Route path="/tv/" element={<TvPage/>}/>
+
+
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={ <Navigate to="/" /> } />
       </Routes>

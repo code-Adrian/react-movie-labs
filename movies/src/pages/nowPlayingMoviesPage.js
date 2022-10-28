@@ -8,7 +8,7 @@ import PlaylistAddIcon from '../components/cardIcons/addToPlaylist'
 
 const NowPlayingMoviesPage = (props) => {
   const [page,setPage] = useState(1)
-  const {  data, error, isLoading, isError,refetch }  = useQuery("upcoming", () => getNowPlayingMoviesPage(page),{enabled: true }) 
+  const {  data, error, isLoading, isError,refetch }  = useQuery("now_playing", () => getNowPlayingMoviesPage(page),{enabled: true }) 
 
 
   useEffect(() => { 

@@ -56,12 +56,12 @@ const TvDetails = ({ tvShow }) => {  // Don't miss this!
 
 
       <Paper component="ul" sx={{...root}}>
-        <Chip icon={<AccessTimeIcon />} label={`${tvShow.runtime} min.`} />
+        <Chip icon={<AccessTimeIcon />} label={`${tvShow.episode_run_time} min.`} />
         <Chip
           icon={<StarRate />}
           label={`${tvShow.vote_average} (${tvShow.vote_count}`}
         />
-        <Chip label={`Released: ${tvShow.release_date}`} />
+        <Chip label={`Released: ${tvShow.first_air_date}`} />
       </Paper>
 
 

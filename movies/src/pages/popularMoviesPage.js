@@ -9,7 +9,7 @@ import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 const HomePage = (props) => {
   const [page,setPage] = useState(1)
 
-  const  {  data, error, isLoading, isError,refetch }  = useQuery("discover", () => getPopularMoviesPage(page),{enabled: true }) 
+  const  {  data, error, isLoading, isError,refetch }  = useQuery("popular", () => getPopularMoviesPage(page),{enabled: true }) 
 
 
   useEffect(() => { 

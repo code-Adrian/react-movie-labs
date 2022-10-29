@@ -23,6 +23,8 @@ const formControl =
 
 export default function FilterMoviesCard(props) {
 
+  let arr = [{"id":0,"rating":"All ratings"},{"id":1,"rating":"Best rating (8+)"},{"id":2,"rating":"Good rating (5-8)"},{"id":3,"rating":"Not great rating (0-5)"}]
+
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
 
   if (isLoading) {
@@ -32,6 +34,11 @@ export default function FilterMoviesCard(props) {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
+
+  if (arr[0].rating !== "All ratings"){
+    arr.unshift({ id: "0", rating: "All ratings" });
+  }
+
   const genres = data.genres;
   if (genres[0].name !== "All"){
     genres.unshift({ id: "0", name: "All" });
@@ -50,7 +57,9 @@ export default function FilterMoviesCard(props) {
     handleChange(e, "genre", e.target.value);
   };
 
-
+const handleRatingChange = (e) => {
+  handleChange(e,"rating",e.target.value)
+}
 
   return (
     <Card 
@@ -91,6 +100,26 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+
+        <FormControl sx={{...formControl}}>
+          <InputLabel id="rating-label">Rating</InputLabel>
+          <Select
+    labelId="rating-label"
+    id="rating-select"
+    defaultValue=""
+    value={props.ratingFilter}
+    onChange={handleRatingChange}
+  >
+            {arr.map((rating) => {
+              return (
+                <MenuItem key={rating.id} value={rating.id}>
+                  {rating.rating}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+
       </CardContent>
       <CardMedia
         sx={{ height: 300 }}

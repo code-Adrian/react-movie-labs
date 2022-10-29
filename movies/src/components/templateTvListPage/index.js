@@ -26,21 +26,50 @@ function TvPageListTemplate({ tvShows, title, action, pages,setPage }) {
   //States
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
+  const [ratingFilter, setRatingFilter] = useState("0");
 
   const genreId = Number(genreFilter);
 
   
-
   let displayedtvShows = tvShows.filter((m) => {
       return m.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
     }).filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-    });
+    }).filter((m) => {
+      //vote average
+         if(ratingFilter === 0){
+           return m
+         }
+         if(ratingFilter === 1){
+          
+          return m.vote_average >= 8
+         }
+         if(ratingFilter === 2){
+          
+          return m.vote_average >= 5 && m.vote_average <= 8
+         }
+         if(ratingFilter === 3){
+          
+          return m.vote_average <= 5
+         }
+        return m;
+  })
 
   const handleChange = (type, value) => {
-    if (type === "name") setNameFilter(value);
-    else setGenreFilter(value);
-  };
+    //  if(type === "name"){
+      if (type === "name") {
+      setNameFilter(value);
+      }
+      if(type === "genre"){
+        setGenreFilter(value);
+      }
+   // }
+  
+    if(type === "rating"){
+      setRatingFilter(value)
+    }
+     // console.log(type)
+    };
 
 
   const handleOnChange = (page) =>{
@@ -60,6 +89,7 @@ function TvPageListTemplate({ tvShows, title, action, pages,setPage }) {
             onUserInput={handleChange}
             titleFilter={nameFilter}
             genreFilter={genreFilter}
+            ratingFilter={ratingFilter}
           />
         </Grid>
         <TvList action={action} tvShows={displayedtvShows}></TvList>

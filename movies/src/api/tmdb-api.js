@@ -191,6 +191,17 @@ export const getUpcomingMovies = () => {
   });
  };
 
+ export const getTvCredits = (id) => {
+  return fetch(
+    `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+  )
+    .then((res) => res.json())
+    .then((json) => {
+      
+      return json;
+    });
+};
+
  export const getTvShowImages = ({ queryKey }) => {
   const [, idPart] = queryKey;
   const { id } = idPart;

@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function MovieListPageTemplate({ movies, title, action, pages,setPage }) {
+function MovieListPageTemplate({ movies, title, action, pages,setPage,current_page }) {
 
   //States
   const [nameFilter, setNameFilter] = useState("");
@@ -76,8 +76,14 @@ function MovieListPageTemplate({ movies, title, action, pages,setPage }) {
 
 
   const handleOnChange = (page) =>{
+    
+      
+    
     setPage(page)
     window.scroll(0,0)
+  
+    
+  
   }
   const classes = useStyles();
   return (
@@ -98,7 +104,7 @@ function MovieListPageTemplate({ movies, title, action, pages,setPage }) {
         <MovieList action={action} movies={displayedMovies}></MovieList>
       </Grid>
       <div className={classes.root}>
-        <Pagination count={pages} defaultPage={1} color="primary" size="large" variant="outlined" shape="rounded" onChange={(e) => handleOnChange(e.target.textContent)} style={{
+        <Pagination count={pages} defaultPage={1} color="primary" size="large" hideNextButton hidePrevButton variant="outlined" shape="rounded" onChange={(e) => handleOnChange(e.target.textContent)} style={{
           display: "flex",
           justifyContent: "center",
         }} />

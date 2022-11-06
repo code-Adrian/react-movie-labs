@@ -12,7 +12,7 @@ import MovieReviews from "../movieReviews"
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
+
 const root = {
     display: "flex",
     justifyContent: "center",
@@ -32,11 +32,7 @@ const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => {  // Don't miss this!
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [credits, setReviews] = useState([]);
 
-  function test(){
-    console.log(movie.id)
-  }
 
   return (
     <>
@@ -91,7 +87,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         ))}
       </Paper>
       <Grid sx={{position: 'fixed', bottom: '1em',right: '1%'}} item xs={12} sm={6} md={4} lg={3} xl={2}>
-      <Fab variant="extended" color="secondary" onClick={() => test()} sx={{marginRight: "1vw"}} >
+      <Fab variant="extended" color="secondary" sx={{marginRight: "1vw"}} >
           <AccessibilityNewIcon/>
           <Link style={{textDecoration: 'none', color: "white"}} to={`/credits/${movie.id}`} state={{movie: movie}}>
           Credits

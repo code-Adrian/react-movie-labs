@@ -8,7 +8,9 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import TvShowReviews from "../tvShowReviews"
-
+import Grid from "@mui/material/Grid";
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import { Link } from "react-router-dom";
 const root = {
     display: "flex",
     justifyContent: "center",
@@ -79,15 +81,17 @@ const TvDetails = ({ tvShow }) => {  // Don't miss this!
         ))}
       </Paper>
 
+      <Grid sx={{position: 'fixed', bottom: '1em',right: '1%'}} item xs={12} sm={6} md={4} lg={3} xl={2}>
+      <Fab variant="extended" color="secondary" sx={{marginRight: "1vw"}} >
+          <AccessibilityNewIcon/>
+          <Link style={{textDecoration: 'none', color: "white"}} to={`/creditsTv/${tvShow.id}`} state={{tvShow: tvShow}}>
+          Credits
+        </Link>
+      </Fab>
       <Fab
         color="secondary"
         variant="extended"
         onClick={() =>setDrawerOpen(true)}
-        sx={{
-          position: 'fixed',
-          bottom: '1em',
-          right: '1em'
-        }}
       >
         <NavigationIcon />
         Reviews
@@ -95,6 +99,8 @@ const TvDetails = ({ tvShow }) => {  // Don't miss this!
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <TvShowReviews tvShow={tvShow} />
       </Drawer>
+
+    </Grid>
       </>
   );
 };

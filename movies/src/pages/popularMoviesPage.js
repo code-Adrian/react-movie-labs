@@ -41,9 +41,8 @@ const HomePage = (props) => {
 
   return (
     
-    <PageTemplate title="Discover Movies" movies={movies} current_page = {current_page} pages={500} setPage={setPage} action={(movie) => {
+    <PageTemplate title="Popular Movies" movies={movies} current_page = {current_page} pages={500} setPage={setPage} action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />}}
-        
         />  
         
 );

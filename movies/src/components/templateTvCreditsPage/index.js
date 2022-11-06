@@ -1,10 +1,10 @@
-import React, { useState }  from "react";
+import React, {  useState }  from "react";
 import Header from "../headerMovieList";
 import FilterCard from "../filterCreditsCard";
-import MovieCreditsList from "../movieCreditsList";
+import TvCreditsList from "../tvCreditsList";
 import Grid from "@mui/material/Grid";
 
-function MovieCreditsPageTemplate({ title,creditsCrew,creditsCast }) {
+function TvCreditsPageTemplate({ title,creditsCrew,creditsCast }) {
 
   //States
   const[showCredits,setShowCredits] = useState(0);
@@ -21,8 +21,6 @@ let noDuplicateCredits = credsarr[showCredits].filter((v,i,a)=>a.findIndex(v2=>(
         return m.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
 })
 
-
-
 const handleChange = (type, value) => {
   if(type ==="involved"){
   if(value === 0) {
@@ -32,8 +30,6 @@ const handleChange = (type, value) => {
   if (type === "name") {setNameFilter(value);}
   else setInvolvedFilter(value);
 };
-
-
   return (
    
     <Grid container sx={{ padding: '20px', backgroundColor: "rgba(0,0,0,0.1)" } }>
@@ -49,10 +45,10 @@ const handleChange = (type, value) => {
             credits={creditsCrew}
           /> }
         </Grid>
-        <MovieCreditsList credits={noDuplicateCredits}></MovieCreditsList>
+        <TvCreditsList credits={noDuplicateCredits}></TvCreditsList>
       </Grid>
     </Grid>
     
   );
 }
-export default MovieCreditsPageTemplate;
+export default TvCreditsPageTemplate;

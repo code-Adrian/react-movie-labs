@@ -1,7 +1,6 @@
 import React, { useEffect, useState }  from "react";
 import { useLocation } from "react-router-dom";
 import PageTemplate from "../components/templateCreditsPage";
-import MovieCredits from "../components/movieCredits";
 import { getMovieCredits } from "../api/tmdb-api";
 
 

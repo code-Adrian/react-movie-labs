@@ -8,6 +8,7 @@ import PopularMoviesPage from "./pages/popularMoviesPage";
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
 import MovieReviewPage from "./pages/movieReviewPage";
 import MovieCreditsPage from "./pages/movieCreditsPage";
+import TvCreditsPage from "./pages/tvCreditsPage";
 import TvShowReviewPage from "./pages/tvShowReviewPage";
 import SiteHeader from './components/siteHeader'
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -43,6 +44,8 @@ const App = () => {
         
         <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
 
+
+        <Route path="/creditsTv/:id" element={ <TvCreditsPage /> } />
         <Route path="/credits/:id" element={ <MovieCreditsPage /> } />
         <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
         <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />

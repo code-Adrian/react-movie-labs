@@ -36,7 +36,7 @@ const NowPlayingMoviesPage = (props) => {
   return (
     <PageTemplate
       pages={total_pages} //For Pagination
-      title='Upcoming Movies'
+      title='Playing in Cinemas'
       movies={movies}
       setPage={setPage}
       action={(movie) => {

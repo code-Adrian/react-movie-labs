@@ -9,7 +9,8 @@ import Grid from "@mui/material/Grid";
 import img from '../../images/no-image-available.png'
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import WorkIcon from '@mui/icons-material/Work';
-export default function MovieCreditsCard({credit}) {
+
+export default function TvCreditsCard({credit}) {
   return (
     
     <Card sx={{ maxWidth: 345, backgroundImage: "url('https://wallpaperboat.com/wp-content/uploads/2019/10/high-resolution-black-background-06.jpg')" }} >

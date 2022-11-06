@@ -95,7 +95,7 @@ function TvPageListTemplate({ tvShows, title, action, pages,setPage }) {
         <TvList action={action} tvShows={displayedtvShows}></TvList>
       </Grid>
       <div className={classes.root}>
-        <Pagination count={pages} defaultPage={1} color="primary" size="large" variant="outlined" shape="rounded" onChange={(e) => handleOnChange(e.target.textContent)} style={{
+        <Pagination count={pages} defaultPage={1} color="primary" hideNextButton hidePrevButton size="large" variant="outlined" shape="rounded" onChange={(e) => handleOnChange(e.target.textContent)} style={{
           display: "flex",
           justifyContent: "center",
         }} />

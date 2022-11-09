@@ -5,7 +5,9 @@ import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
 import { Pagination } from "@mui/material";
 import {makeStyles} from "@material-ui/core"
-
+import Fab from "@mui/material/Fab";
+import * as auth from "firebase/auth"
+import fireapp from "../../firebase";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -19,11 +21,18 @@ const useStyles = makeStyles(() => ({
     width: "100vw",
     marginLeft: "-2vw",
     
+  },
+  signOut: {
+    position: "fixed",
+    overflow: "hidden",
+    bottom: 0,
+    zIndex: 200,
+    marginLeft: "-2vw",
+    right: "2em"
   }
 }));
 
 function MovieListPageTemplate({ movies, title, action, pages,setPage,current_page }) {
-
   //States
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
@@ -87,8 +96,9 @@ function MovieListPageTemplate({ movies, title, action, pages,setPage,current_pa
   }
   const classes = useStyles();
   return (
-   
+  
     <Grid container sx={{ padding: '20px', backgroundColor: "rgba(0,0,0,0.1)" } }>
+       
       <Grid item xs={12}>
         <Header title={title} />
       </Grid>
@@ -104,10 +114,14 @@ function MovieListPageTemplate({ movies, title, action, pages,setPage,current_pa
         <MovieList action={action} movies={displayedMovies}></MovieList>
       </Grid>
       <div className={classes.root}>
+      
         <Pagination count={pages} defaultPage={1} color="primary" size="large" hideNextButton hidePrevButton variant="outlined" shape="rounded" onChange={(e) => handleOnChange(e.target.textContent)} style={{
           display: "flex",
           justifyContent: "center",
         }} />
+        </div>
+        <div className={classes.signOut}>
+        <Fab color="primary" variant="extended" onClick={() => auth.signOut(fireapp)}> Sign Out!</Fab>
         </div>
     </Grid>
     

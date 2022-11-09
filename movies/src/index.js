@@ -19,9 +19,11 @@ import AddMovieReviewPage from './pages/addMovieReviewPage'
 import TvDetailsPage from "./pages/tvDetailsPage";
 import TvPage from "./pages/tvPage";
 import TvContextProvider from "./contexts/tvContext";
-
-
-
+import Login from "./components/login"
+import Signup from "./components/signup"
+import { AuthProvider } from "./contexts/auth";
+import AuthRoute from "./components/authroute";
+import NotAuthRoute from "./components/notauthroute";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -37,34 +39,43 @@ const App = () => {
     
     <QueryClientProvider client={queryClient}>
     <BrowserRouter>
+    <AuthProvider>
       <SiteHeader />
       <TvContextProvider>
       <MoviesContextProvider>
       <Routes>
-        
-        <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
+
+      <Route element={<NotAuthRoute/>}>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        </Route>
+
+        <Route element={<AuthRoute/>}>
+         <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
 
 
-        <Route path="/creditsTv/:id" element={ <TvCreditsPage /> } />
-        <Route path="/credits/:id" element={ <MovieCreditsPage /> } />
-        <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
-        <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
-        <Route path="/movies/popular" element={<PopularMoviesPage />} />
-        <Route path="/movies/now_playing" element={<NowPlayingMoviesPage />} />
-        <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
-        <Route path="/movies/:id" element={<MoviePage />} />
+          <Route path="/creditsTv/:id" element={ <TvCreditsPage /> } />
+          <Route path="/credits/:id" element={ <MovieCreditsPage /> } />
+         <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
+          <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
+         <Route path="/movies/popular" element={<PopularMoviesPage />} />
+         <Route path="/movies/now_playing" element={<NowPlayingMoviesPage />} />
+         <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
+         <Route path="/movies/:id" element={<MoviePage />} />
 
 
-        <Route path="/tvShow/:id" element={<TvDetailsPage />} />
-        <Route path="/tvShowReviews/:id" element={ <TvShowReviewPage /> } />
-        <Route path="/tv/" element={<TvPage/>}/>
+          <Route path="/tvShow/:id" element={<TvDetailsPage />} />
+         <Route path="/tvShowReviews/:id" element={ <TvShowReviewPage /> } />
+         <Route path="/tv/" element={<TvPage/>}/>
 
 
-        <Route path="/" element={<HomePage />} />
-        <Route path="*" element={ <Navigate to="/" /> } />
+         <Route path="/" element={<HomePage />} />
+         <Route path="*" element={ <Navigate to="/" /> } />
+        </Route>
       </Routes>
       </MoviesContextProvider>
       </TvContextProvider>
+      </AuthProvider>
     </BrowserRouter>
     <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

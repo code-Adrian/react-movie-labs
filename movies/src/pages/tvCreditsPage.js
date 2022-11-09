@@ -20,7 +20,7 @@ const TvCreditsPage = (props) => {
   }, []);
 
   return (
-    <PageTemplate tvId={tvShow.id} title={tvShow.title} creditsCrew={creditsCrew} creditsCast={creditsCast}>
+    <PageTemplate tvId={tvShow.id} title={tvShow.name} creditsCrew={creditsCrew} creditsCast={creditsCast}>
       
     </PageTemplate>
   );

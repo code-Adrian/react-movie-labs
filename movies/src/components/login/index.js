@@ -22,7 +22,7 @@ const Login = () => {
         setColor("red");
       }
     },
-    [1]
+    []
   );
 
   const { currentUser } = useContext(AuthContext);

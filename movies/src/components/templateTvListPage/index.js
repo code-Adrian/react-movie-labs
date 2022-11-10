@@ -5,6 +5,9 @@ import TvList from "../tvList";
 import Grid from "@mui/material/Grid";
 import { Pagination } from "@mui/material";
 import {makeStyles} from "@material-ui/core"
+import Fab from "@mui/material/Fab";
+import * as auth from "firebase/auth"
+import fireapp from "../../firebase";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,8 +19,15 @@ const useStyles = makeStyles(theme => ({
     padding: "5px 0px",
     color: "white",
     width: "100vw",
+    marginLeft: "-2vw", 
+  },
+  signOut: {
+    position: "fixed",
+    overflow: "hidden",
+    bottom: 0,
+    zIndex: 200,
     marginLeft: "-2vw",
-    
+    right: "2em"
   }
 }));
 
@@ -99,6 +109,9 @@ function TvPageListTemplate({ tvShows, title, action, pages,setPage }) {
           display: "flex",
           justifyContent: "center",
         }} />
+        </div>
+        <div className={classes.signOut}>
+        <Fab color="primary" variant="extended" onClick={() => auth.signOut(fireapp)}> Sign Out!</Fab>
         </div>
     </Grid>
     

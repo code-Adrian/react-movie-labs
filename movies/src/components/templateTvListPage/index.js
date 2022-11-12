@@ -28,6 +28,14 @@ const useStyles = makeStyles(theme => ({
     zIndex: 200,
     marginLeft: "-2vw",
     right: "2em"
+  },
+  deleteAccount: {
+    position: "fixed",
+    overflow: "hidden",
+    bottom: 0,
+    zIndex: 200,
+    marginLeft: "-2vw",
+    left: "2em"
   }
 }));
 
@@ -112,6 +120,9 @@ function TvPageListTemplate({ tvShows, title, action, pages,setPage }) {
         </div>
         <div className={classes.signOut}>
         <Fab color="primary" variant="extended" onClick={() => auth.signOut(fireapp)}> Sign Out!</Fab>
+        </div>
+        <div className={classes.deleteAccount}>
+        <Fab color="secondary" variant="extended" onClick={() => auth.deleteUser(fireapp.currentUser)}>Delete Account!</Fab>
         </div>
     </Grid>
     
